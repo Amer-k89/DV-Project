@@ -27,6 +27,6 @@ Country Details
 Compare Countries
 ![Compare Two different Countries](https://user-images.githubusercontent.com/62378629/155144761-21fd3a8e-f7b3-441a-9881-7718f19a8634.png)
 
-## Contributers
+### Contributers
 - [Amer Al Khoury](https://github.com/Amer-k89)
 - [Ziad Janpih](https://github.com/ZiadJanpih)
