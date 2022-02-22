@@ -1,1 +1,2 @@
-# DV-Project
+# Data Visualization Project
+Berkeley Earth Tempreture DV Project
