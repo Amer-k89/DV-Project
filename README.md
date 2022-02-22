@@ -20,3 +20,9 @@ Berkeley earth tempreture data visualization project
 
 Home page
 ![Home Page](https://user-images.githubusercontent.com/62378629/155144011-e4b926dc-290f-44f6-b474-11cc3513efbb.png)
+
+Country Details
+![Country Details](https://user-images.githubusercontent.com/62378629/155144253-6dfac096-fa2e-4ca3-8880-8e752a784fc5.png)
+
+Compare Countries
+![Compare Two different Countries](https://user-images.githubusercontent.com/62378629/155144418-ffad2c77-ce47-458d-8834-a603c8324823.png)
