@@ -46,6 +46,10 @@ h1 {
   margin: 0 0 10px 0;
 }
 
+#StripsTitle {
+  padding-top: 50px;
+}
+
 .row-fluid .span9 {
   width: 75%;
   float: left;
