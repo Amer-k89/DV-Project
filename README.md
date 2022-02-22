@@ -25,4 +25,4 @@ Country Details
 ![Country Details](https://user-images.githubusercontent.com/62378629/155144253-6dfac096-fa2e-4ca3-8880-8e752a784fc5.png)
 
 Compare Countries
-![Compare Two different Countries](https://user-images.githubusercontent.com/62378629/155144418-ffad2c77-ce47-458d-8834-a603c8324823.png)
+![Compare Two different Countries](https://user-images.githubusercontent.com/62378629/155144761-21fd3a8e-f7b3-441a-9881-7718f19a8634.png)
