@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <title>Country Details</title>
+    <link rel="shortcut icon" href="Images/climate.png" />
+
+        <!--------------------------------Style-------------------------------------------->
+        <link rel="stylesheet" href="CSS/structure.css" />
+        <link rel="stylesheet" href="./CSS/DetailsAndCompare/style.css" />
+        <link rel="stylesheet" href="./CSS/DetailsAndCompare/SearchBar.css" />
+    
+
+    <!--------------------------------jquery-------------------------------------------->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/cupertino/jquery-ui.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+
+
+    <!----------------------------------- D3 ------------------------------------------>
+    <script src="https://unpkg.com/topojson@3"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.6.0/d3.min.js"></script>
+    <script src="https://unpkg.com/d3-simple-slider"></script>
+  </head>
+
+  <body id="body">
+    <div class="main_header">
+      <nav>
+        <ul class="topnav" id="dropdownMenu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#contact">Countries</a></li>
+          <li><a href="Compare.html">Compare</a></li>
+          <li class="topnav-right"><a onclick="About_click()">About</a></li>
+          <li class="dropdownIcon">
+            <a href="javascript:void(0)" onclick="dropdownMenu_click()"
+              >&#9776;</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="Select-Type">
+      <h3>Choose Type:</h3>
+      <form id="SelectedButton">
+        <label id="AnnualYearsButton-label" for="AnnualYearsButton">
+          <input
+            id="AnnualYearsButton"
+            type="radio"
+            name="showType"
+            value="annual"
+            checked="checked"
+          />
+          Annual Anomaly
+        </label>
+        <label id="FiveYearsButton-label" for="FiveYearsButton">
+          <input
+            id="FiveYearsButton"
+            type="radio"
+            name="showType"
+            value="five"
+          />
+          Five Years Anomaly
+        </label>
+
+        <label id="TenYearsButton-label" for="TenYearsButton">
+          <input id="TenYearsButton" type="radio" name="showType" value="ten" />
+          Ten Years Anomaly
+        </label>
+        <label id="TwentyYearsButton-label" for="TwentyYearsButton">
+          <input
+            id="TwentyYearsButton"
+            type="radio"
+            name="showType"
+            value="twenty"
+          />Twenty Years Anomaly
+        </label>
+      </form>
+    </div>
+    <div id="content">
+      <div id="column-wrap">
+        <div id="primary" class="content-area">
+          <main id="main" class="site-main">
+            <div class="row-fluid">
+
+              <div class="span5 main-content">
+                <h3>Change Currently Presented Country:</h3>
+                <form id="ChangeCountryForm" autocomplete="off">
+                  <div class="autocomplete">
+                    <input
+                      id="newCountryName"
+                      type="text"
+                      name="selectedCountry"
+                      placeholder="Search For Country Name"
+                    />
+                  </div>
+                  <input type="submit" value="Change" />
+                </form>
+              </div>
+
+              <div class="span5 main-content">
+                <h3>Select Country to Compare With:</h3>
+                <form id="searchForm" autocomplete="off">
+                  <div class="autocomplete">
+                    <input
+                      id="otherCountryName"
+                      type="text"
+                      name="selectedCountry"
+                      placeholder="Search For Country Name"
+                    />
+                  </div>
+                  <input type="submit" value="Search" />
+                </form>
+              </div>
+
+
+
+            </div>
+            <div class="row-fluid">
+              <h1 class="page-title" id="title">Climate Change:</h1>
+            </div>
+            <div class="row-fluid">
+              <div class="span9 main-content">
+                <div
+                  class="chart_container chart_container_lineChart"
+                  id="linechart"
+                >
+                  <p class="graph-description">
+                    The next linechart shows the temperatures for the available
+                    years of the country with the range of confidence of the
+                    measures.
+                  </p>
+                  <div class="tooltip" id="tooltip_line"></div>
+                  <svg style="overflow: visible">
+                    <g class="graphics">
+                      <g class="x_axis_label"><text>Years</text></g>
+                      <g class="y_axis_label">
+                        <text>Mean temperature (°C)</text>
+                      </g>
+
+                      <g id="x_grid_linechart" class="grid"></g>
+                      <g id="y_grid_linechart" class="grid"></g>
+
+                      <g class="uncertainty"></g>
+
+                      <g class="line_chart_annual"></g>
+                      <g class="line_chart_range_years"></g>
+                      <g class="baselines"></g>
+                      <g class="y_axis"></g>
+                      <g class="x_axis"></g>
+                    </g>
+                  </svg>
+                </div>
+                <h2>Climate Stripes</h2>
+                <div class="chart_container" id="stripesChartContainer">
+                  <div class="tooltip" id="tooltip_stripes"></div>
+                  <svg id="stripesChart"></svg>
+                </div>
+                <h2>Temperature Record Months and Years</h2>
+                <h3>Hottest Monthly and Annual Averages</h3>
+                <div class="caption text-center">
+                  <button id="showHottestTable">Show Table</button> |
+                  <button id="showHottestGraph">Show Chart</button>
+                </div>
+                <div class="chart_container" id="hottestTempTable">
+                  <div class="tooltip" id="tooltip-hotTempTable"></div>
+                  <table class="table" id="temperature-Hottest-table"></table>
+                  <svg
+                    id="graphics"
+                    style="overflow: visible"
+                    class="removeDisplay"
+                  >
+                    <g>
+                      <g class="x_axis"></g>
+                      <g class="x_axis_label"><text>Months</text></g>
+                      <g class="y_axis"></g>
+                      <g class="y_axis_label"><text>Anomaly (°C)</text></g>
+                    </g>
+                  </svg>
+                  <div class="caption table-caption" id="hottestCaption">
+                    Months and years with an estimated uncertainty greater than
+                    1 °C are omitted.
+                  </div>
+                </div>
+                <h3>Coldest Monthly and Annual Averages</h3>
+                <div class="caption text-center">
+                  <button id="showColdestTable">Show Table</button> |
+                  <button id="showColdestGraph">Show Chart</button>
+                </div>
+                <div class="chart_container" id="coldestTempTable">
+                  <div class="tooltip" id="tooltip-coldTempTable"></div>
+                  <table class="table" id="temperature-coldest-table"></table>
+                  <svg
+                    id="graphics"
+                    style="overflow: visible"
+                    class="removeDisplay"
+                  >
+                    <g>
+                      <g class="x_axis"></g>
+                      <g class="x_axis_label"><text>Months</text></g>
+                      <g class="y_axis"></g>
+                      <g class="y_axis_label"><text>Anomaly (°C)</text></g>
+                    </g>
+                  </svg>
+                  <div class="caption table-caption" id="coldestCaption">
+                    Months and years with an estimated uncertainty greater than
+                    1 °C are omitted.
+                  </div>
+                </div>
+                <h2>Seasonal Change</h2>
+                <div id="seasonlChangeGraph" class="chart_container">
+                  <div class="tooltip" id="tooltip-seasonal-changes"></div>
+                  <svg style="overflow: visible">
+                    <g class="chart">
+                      <g class="x_axis_label"><text>Months</text></g>
+                      <g class="y_axis_label">
+                        <text>Mean temperature (°C)</text>
+                      </g>
+
+                      <g id="x_grid_seasonal" class="grid"></g>
+                      <g id="y_grid_seasonal" class="grid"></g>
+
+                      <g class="uncertainty" id="seasonalBaselineUnc"></g>
+
+                      <g class="baseLineUnc" id="seasonalBaseline"></g>
+                      <g class="rangeLineSeasonal" id="rangeLineMax"></g>
+                      <g class="rangeLineSeasonal" id="rangeLineMin"></g>
+                      <g class="lastYearLine"></g>
+                      <g class="y_axis_seasonal"></g>
+                      <g class="x_axis_seasonal"></g>
+                    </g>
+                  </svg>
+                </div>
+                <h2>Evolution of Climate Extremes</h2>
+                <h3>Mean of Daily High Tempreture</h3>
+                <div
+                  class="chart_container chart_container_minmax"
+                  id="linechart_max"
+                >
+                  <div class="tooltip" id="tooltip_line"></div>
+                  <svg style="overflow: visible">
+                    <g class="graphics">
+                      <g class="x_axis_label"><text>Years</text></g>
+                      <g class="y_axis_label">
+                        <text>Max temperature (°C)</text>
+                      </g>
+
+                      <g id="x_grid_linechart" class="grid"></g>
+                      <g id="y_grid_linechart" class="grid"></g>
+
+                      <g class="uncertainty"></g>
+
+                      <g class="line_chart_annual"></g>
+                      <g class="line_chart_range_years"></g>
+                      <g class="baselines"></g>
+                      <g class="y_axis"></g>
+                      <g class="x_axis"></g>
+                    </g>
+                  </svg>
+                </div>
+                <h3>Mean of Daily Low Tempreture</h3>
+                <div
+                  class="chart_container chart_container_minmax"
+                  id="linechart_min"
+                >
+                  <div class="tooltip" id="tooltip_line"></div>
+                  <svg style="overflow: visible">
+                    <g class="graphics">
+                      <g class="x_axis_label"><text>Years</text></g>
+                      <g class="y_axis_label">
+                        <text>Min temperature (°C)</text>
+                      </g>
+
+                      <g id="x_grid_linechart" class="grid"></g>
+                      <g id="y_grid_linechart" class="grid"></g>
+
+                      <g class="uncertainty"></g>
+
+                      <g class="line_chart_annual"></g>
+                      <g class="line_chart_range_years"></g>
+                      <g class="baselines"></g>
+                      <g class="y_axis"></g>
+                      <g class="x_axis"></g>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+              <div class="span3">
+                <div class="sideBar">
+                  <img id="flagImage" />
+                  <img id="globalImage" />
+                  <img id="localImage" />
+                </div>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <div id="About_Dialog" title="Berkeley Earth">
+      <h4>This is a Data Visualisation project for Genoa University in the Computer Science Master Program</h4>
+      <h3>Contributors :</h3> 
+      <div id="About_info" class="row">
+        <img src="Images/Ziad.jpg" alt="Ziad Janpih" id="ziad_photo" 
+        width="120" height="120" style="margin: 30px; border: 2px solid #444;
+        border-radius: 8px;" />
+        <div >
+          <h4>Ziad Janpih</h4>
+          <span> <a href="https://www.linkedin.com/in/ziad-janpih">Linkedin</a></span><br>
+          <span> <a href="https://github.com/ZiadJanpih">Github</a></span><br>
+          <span> <a>Email : Ziad.Janpih@gmail.com</a></span><br>
+        </div>
+  
+      </div>
+      <div id="About_info" class="row">
+        <img src="Images/Amer.jpg" alt="Amer Al Khoury" id="amer_photo" 
+        width="120" height="120" style="margin: 30px; border: 2px solid #444;
+        border-radius: 8px;" />
+        <div >
+          <h4>Amer Al Khoury</h4>
+          <span> <a href="https://www.linkedin.com/in/amer-al-khoury-69b537107">Linkedin</a></span><br>
+          <span> <a href="https://github.com/Amer-k89">Github</a></span><br>
+          <span> <a>Email : amer.alkhoury89@gmail.com</a></span><br>
+        </div>
+  
+      </div>
+    </div>
+    <script>
+  
+      $(document).ready(function () {
+        $('#About_Dialog').dialog({
+          autoOpen: false,
+          width: 600,
+          buttons: {
+            OK: function () {
+              $(this).dialog('close');
+            }
+          },
+        });
+      });
+      function About_click() {
+        $('#About_Dialog').dialog('open');
+      }
+    </script>
+
+
+    <!------------------------------ Local Scripts ------------------------------------>
+    <script
+      type="text/javascript"
+      src="./Scripts/Details/Constants.js"
+    ></script>
+    <script type="text/javascript" src="./Scripts/Helper/Helper.js"></script>
+    <script type="text/javascript" src="./Scripts/Charts/LineChart.js"></script>
+    <script type="text/javascript" src="./Scripts/Charts/Stripes.js"></script>
+    <script type="text/javascript" src="./Scripts/Charts/Seasonal.js"></script>
+    <script
+      type="text/javascript"
+      src="./Scripts/Charts/HottestColdest.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./Scripts/Searchbar/Searchbar.js"
+    ></script>
+    <script type="text/javascript" src="./Scripts/Details/ReadData.js"></script>
+  </body>
+  <script>
+    function dropdownMenu_click() {
+      var x = document.getElementById('dropdownMenu');
+      if (x.className === 'topnav') {
+        x.className += ' responsive';
+      } else {
+        x.className = 'topnav';
+      }
+    }
+  </script>
+</html>

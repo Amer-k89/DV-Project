@@ -1,0 +1,151 @@
+.slider_controls {
+  display: flex;
+  align-items: center;
+}
+
+#slider_but {
+  width: 50px;
+  height: 50px;
+  font-size: medium;
+}
+
+#map_type_but {
+  width: 50px;
+  height: 50px;
+  font-size: medium;
+}
+
+.ticks {
+  font-size: 13px;
+}
+
+.map_type_text {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.track,
+.track-inset,
+.track-overlay {
+  stroke-linecap: round;
+}
+
+.track {
+  stroke: #000;
+  stroke-opacity: 0.3;
+  stroke-width: 10px;
+}
+
+.track-inset {
+  stroke: #ddd;
+  stroke-width: 8px;
+}
+
+.track-overlay {
+  pointer-events: stroke;
+  stroke-width: 50px;
+  stroke: transparent;
+  cursor: crosshair;
+}
+
+.handle {
+  fill: #fff;
+  stroke: #000;
+  stroke-opacity: 0.5;
+  stroke-width: 1.25px;
+}
+
+.radio-button label {
+  display: inline-block;
+  font-family: sans-serif, Arial;
+  font-size: 15px;
+  font-weight: bold;
+  margin-right: 25px;
+  
+}
+
+.radio-button {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border: none ;
+  margin: 10px;
+}
+
+.radio-toolbar {
+  border: none;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  display: none;
+  float: left;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 90%;
+  margin-top: 20px;
+}
+#speed_div {
+  border: none;
+  display: flex;
+  width: 30%;
+}
+.radio-toolbar input[type='radio'] {
+  opacity: 0;
+
+  position: fixed;
+  width: 0;
+}
+
+.radio-toolbar label {
+  display: inline-block;
+  background-color: rgb(99, 113, 143);
+  padding: 8px 8px;
+  font-family: sans-serif, Arial;
+  font-size: 14px;
+  color: #fff;
+  border: 2px solid #444;
+  border-radius: 4px;
+  margin: auto;
+}
+
+.radio-toolbar label:hover {
+  background-color: #508196;
+}
+
+.radio-toolbar input[type='radio']:focus + label {
+  border: 3px dashed #04597e;
+}
+
+.radio-toolbar input[type='radio']:checked + label {
+  background-color: #04597e;
+  border-color: #04597e;
+}
+
+.hottestColdestLabels {
+  margin: 10px;
+  width: 600px;
+}
+#country_data_measure{
+  margin-bottom: 10px;
+}
+.info_tooltip {
+  cursor: help;
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.info_tooltip .info_tooltiptext {
+  visibility: hidden;
+  background-color: #9fc9db;
+  color: black;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px ;
+  width: 300px;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+.info_tooltip:hover .info_tooltiptext {
+  
+  visibility: visible;
+}

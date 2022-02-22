@@ -1,0 +1,148 @@
+/*-------------------------tooltip----------------------------------*/
+
+div.tooltip {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.tooltip {
+  position: absolute;
+  width: auto;
+  height: auto;
+  padding: 5px;
+  text-align: center;
+  font-size: 11px;
+  font-family: sans-serif;
+  border: 1px solid gray;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+  display: none;
+  opacity: 0.95;
+}
+
+.tooltip-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.tooltip-anomaly {
+  font-size: 16px;
+  text-align: center;
+}
+
+/*------------------------Chart Container--------------------------------*/
+.chart_container {
+  padding: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 0;
+  align-items: center;
+}
+
+#dialogCountryLinechart {
+
+  padding: 0;
+  
+  width: 600px;
+  
+  margin-top: 30px;
+  
+  margin-bottom: 10px;
+  
+  }
+
+  .chart_container_lineChart_compare {
+    height: 200px;
+    }
+
+/*-------------------------Line Chart----------------------------------*/
+
+.chart_container_lineChart {
+  
+  height: 280px;
+  
+  }
+  /* .chart_container_Stripes {
+  
+    height: 150px;
+    
+    } */
+#linechart {
+  padding-left: 20px;;
+  margin-bottom: 10px;
+}
+
+#linechart .tooltip {
+  text-align: left;
+}
+
+.line_chart_annual {
+  stroke: steelblue;
+  fill: none;
+}
+
+.line_chart_range_years {
+  stroke-width: 1px;
+  fill: none;
+}
+
+.graphics .baselines {
+  stroke-width: 1.5px;
+  stroke: black;
+  stroke-dasharray: 4px;
+  fill: none;
+}
+
+.uncertainty {
+  fill: #c2bcbc;
+  stroke: none;
+}
+
+.grid line {
+  stroke: lightgrey;
+  stroke-opacity: 0.7;
+  shape-rendering: crispEdges;
+  stroke-dasharray: 6px;
+}
+
+.grid path {
+  stroke-width: 0;
+}
+
+.UpperBox {
+  padding: 3px;
+  fill: white;
+}
+
+.UpperBox_square {
+  stroke: #000;
+  stroke-width: 1px;
+}
+
+text.UpperBox {
+  fill: #000;
+  font-size: 11px;
+
+  font-family: sans-serif;
+}
+
+.UpperBox .line_chart_annual {
+  stroke-width: 2px;
+}
+
+.UpperBox .line_chart_ten_years {
+  stroke-width: 3px;
+}
+
+.UpperBox .baselines {
+  stroke-width: 2px;
+}
+.removeDisplay {
+  display: none;
+}
+#glople_climate_change_h2{
+  margin: 10px;
+}

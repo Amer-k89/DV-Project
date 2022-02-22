@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<link
+  href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/cupertino/jquery-ui.min.css"
+  rel="stylesheet"
+/>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="//d3js.org/d3-scale-chromatic.v0.3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js"></script>
+<script src="//d3js.org/topojson.v2.min.js"></script>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Berkeley Earth</title>
+    <link rel="shortcut icon" href="Images/climate.png" />
+
+    <link rel="stylesheet" href="CSS/Map_style.css" />
+    <link rel="stylesheet" href="CSS/structure.css" />
+    <link rel="stylesheet" href="CSS/controls_style.css" />
+    <link rel="stylesheet" href="./CSS/IndexChartStyles.css" />
+  </head>
+
+  <body id="body">
+    <div class="main_header">
+      <nav>
+        <ul class="topnav" id="dropdownMenu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="./Details.html">Countries</a></li>
+          <li><a href="Compare.html">Compare</a></li>
+          <li class="topnav-right"><a onclick="About_click()">About</a></li>
+          <li class="dropdownIcon">
+            <a href="javascript:void(0)" onclick="dropdownMenu_click()"
+              >&#9776;</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="container" id="main_view"></div>
+    <div id="Info_Dialog" title="Berkeley Earth">
+      <div id="country_info" class="row">
+        <img
+          src="data/flags/unknown.png"
+          alt="Country Flag"
+          id="country_info_flag"
+          width="120"
+          height="100"
+        />
+        <h4 id="country_info_name"></h4>
+
+        <div class="hottestColdestLabels">
+          <label>Hottest Country: </label>
+          <label id="hottestCountry"></label>
+        </div>
+        <div class="hottestColdestLabels">
+          <label>Coldest Country: </label>
+          <label id="coldestCountry"></label>
+        </div>
+        <div
+          class="chart_container chart_container_lineChart_compare"
+          id="dialogCountryLinechart"
+        >
+          <div class="tooltip" id="tooltip_line"></div>
+          <svg style="overflow: visible">
+            <g class="graphics">
+              <!-- <g class="x_axis_label"><text>Years</text></g> -->
+              <g class="y_axis_label" id="y_axis_label_dialog">
+                <text>Mean temperature (°C)</text>
+              </g>
+
+              <g id="x_grid_linechart" class="grid"></g>
+              <g id="y_grid_linechart" class="grid"></g>
+
+              <g class="uncertainty"></g>
+
+              <g class="line_chart_annual"></g>
+              <g class="line_chart_range_years"></g>
+              <g class="baselines"></g>
+              <g class="y_axis"></g>
+              <g class="x_axis"></g>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div id="About_Dialog" title="Berkeley Earth">
+      <h4>
+        This is a Data Visualisation project for Genoa University in the
+        Computer Science Master Program
+      </h4>
+      <h3>Contributors :</h3>
+      <div id="About_info" class="row">
+        <img
+          src="Images/Ziad.jpg"
+          alt="Ziad Janpih"
+          id="ziad_photo"
+          width="120"
+          height="120"
+          style="margin: 30px; border: 2px solid #444; border-radius: 8px"
+        />
+        <div>
+          <h4>Ziad Janpih</h4>
+          <span>
+            <a href="https://www.linkedin.com/in/ziad-janpih">Linkedin</a></span
+          ><br /><br />
+          <span> <a href="https://github.com/ZiadJanpih">Github</a></span
+          ><br /><br />
+          <span> <a>Email : Ziad.Janpih@gmail.com</a></span
+          ><br /><br />
+        </div>
+      </div>
+      <div id="About_info" class="row">
+        <img
+          src="Images/Amer.jpg"
+          alt="Amer Al Khoury"
+          id="amer_photo"
+          width="120"
+          height="120"
+          style="margin: 30px; border: 2px solid #444; border-radius: 8px"
+        />
+        <div>
+          <h4>Amer Al Khoury</h4>
+          <span>
+            <a href="https://www.linkedin.com/in/amer-al-khoury-69b537107"
+              >Linkedin</a
+            ></span
+          ><br /><br />
+          <span> <a href="https://github.com/Amer-k89">Github</a></span
+          ><br /><br />
+          <span> <a>Email : amer.alkhoury89@gmail.com</a></span
+          ><br /><br />
+        </div>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function () {
+        $('#About_Dialog').dialog({
+          autoOpen: false,
+          width: 600,
+          buttons: {
+            OK: function () {
+              $(this).dialog('close');
+            },
+          },
+        });
+      });
+      function About_click() {
+        $('#About_Dialog').dialog('open');
+      }
+    </script>
+
+    <script
+      type="text/javascript"
+      src="./Scripts/Charts/DialogLineChart.js"
+    ></script>
+
+    <script type="text/javascript" src="Scripts/versor.js"></script>
+    <script type="text/javascript" src="scriptmanager.js"></script>
+    <script
+      type="text/javascript"
+      src="Scripts/Charts/Global_LineChart.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="Scripts/Charts/Global_Stripes.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="Scripts/Charts/Global_HeatMap.js"
+    ></script>
+    <script type="text/javascript" src="Scripts/slider.js"></script>
+    <script type="text/javascript" src="Scripts/map_scripts.js"></script>
+    <script type="text/javascript" src="Scripts/map_type_zoom.js"></script>
+    <script type="text/javascript" src="Scripts/events_manager.js"></script>
+  </body>
+</html>

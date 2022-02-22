@@ -1,0 +1,40 @@
+/*  ============= Nav bar  ====================*/
+nav {
+  width: 100%;
+  margin: 0;
+}
+
+nav ul {
+  background-color: #04597e;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+ul.topnav li {
+  list-style: none;
+  float: left;
+}
+
+ul.topnav li.topnav-right {
+  float: right;
+}
+
+ul.topnav li a {
+  display: block;
+  text-decoration: none;
+  min-height: 16px;
+  text-align: center;
+  padding: 14px;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+ul.topnav li a:hover {
+  background-color: #265d75;
+  color: black;
+}
+
+ul.topnav li.dropdownIcon {
+  display: none;
+}
