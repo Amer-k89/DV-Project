@@ -2,12 +2,12 @@
 
 Berkeley earth tempreture data visualization project
 
-## Execute
+### Execute
 
 - Put the data folder inside the project folder
 - run the project on a server knowing that [project/index.html](https://github.com/Amer-k89/DV-Project/blob/main/Project/index.html) is the main page
 
-## Folder Structure
+### Folder Structure
 
 - In [Data](https://github.com/AlessandroCaroti/DV_finalProject/tree/main/data) folder contain the data that needed for the application
 - In [Work on Data](https://github.com/Amer-k89/DV-Project/tree/main/Work%20on%20Data) contain the python code that we use in order to download the data from [Berkeley Earth](http://berkeleyearth.org/data/) website <br/>
@@ -16,6 +16,7 @@ Berkeley earth tempreture data visualization project
 
 #
 
-## Web preview:
+### Web preview:
 
 Home page
+![Home Page](https://user-images.githubusercontent.com/62378629/155144011-e4b926dc-290f-44f6-b474-11cc3513efbb.png)
